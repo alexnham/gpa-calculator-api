@@ -15,7 +15,8 @@ app = FastAPI(title=settings.APP_NAME, version=settings.APP_VERSION)
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[
-        "https://gpa-calculator-frontend.vercel.app/"  # Frontend deployed URL
+        "https://gpa-calculator-frontend.vercel.app/",
+        "https://gpa.alexnham.com"  # Frontend deployed URL
     ],
     allow_credentials=True,
     allow_methods=["*"],
