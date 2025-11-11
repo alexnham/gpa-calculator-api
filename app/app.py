@@ -113,10 +113,10 @@ async def upload_transcript_uwo(file: UploadFile = File(...)):
                 gpas.append(_convert_percent_to_uwo_gpa(int(grade)))
 
         if not gpas:
-            return JSONResponse(content={"uwo_average_gpa": 0.0, "count": 0})
+            return JSONResponse(content={"Message: Nothing to calculate."}, status_code=400)
 
         avg = sum(gpas) / len(gpas)
-        return JSONResponse(content={"uwo_average_gpa": round(avg, 2), "count": len(gpas)})
+        return JSONResponse(content={"uwo_average_gpa": round(avg, 2)})
     except HTTPException:
         raise
     except Exception as e:
