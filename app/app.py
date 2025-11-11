@@ -5,12 +5,23 @@ import asyncio
 import io
 import inspect
 from pypdf import PdfReader
-
+from fastapi.middleware.cors import CORSMiddleware
 from app.api.v1.endpoints.transcripts import process_transcript
 from app.core.config import settings
 from app.services.extractor import extract_courses_from_transcript
 
 app = FastAPI(title=settings.APP_NAME, version=settings.APP_VERSION)
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=[
+        "http://localhost:4200",  # your local Angular app
+        "https://wilhelmina-precloacal-shira.ngrok-free.dev"  # ngrok URL
+    ],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 @app.post("/api/v1/transcripts/")
 async def upload_transcript(file: UploadFile = File(...)):
