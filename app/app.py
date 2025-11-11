@@ -15,8 +15,7 @@ app = FastAPI(title=settings.APP_NAME, version=settings.APP_VERSION)
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[
-        "http://localhost:4200",  # your local Angular app
-        "https://wilhelmina-precloacal-shira.ngrok-free.dev"  # ngrok URL
+        "https://gpa-calculator-frontend.vercel.app/"  # Frontend deployed URL
     ],
     allow_credentials=True,
     allow_methods=["*"],
